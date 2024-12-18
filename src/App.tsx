@@ -1,13 +1,8 @@
 import React from "react";
-import {
-  Routes,
-  Route,
-  NavLink,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import Counter from "./components/Counter";
 import Display from "./components/Display";
-import { Box, Button } from "@mui/material";
+import { Alert, Box, Button, Snackbar } from "@mui/material";
 import TaskList from "./components/TaskList";
 import "./App.css";
 import Login from "./components/Login";
@@ -20,7 +15,8 @@ import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
 
 const App: React.FC = () => {
-  const { user, setUser, getTaskList } = useStore();
+  const { user, setUser, getTaskList, snackbar, setSnackbarMessage } =
+    useStore();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -30,14 +26,30 @@ const App: React.FC = () => {
         setUser(null);
         getTaskList();
         navigate("/");
+        setSnackbarMessage(true, "User logged out successfully!", "success");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        setSnackbarMessage(false, "Error while logging out!", "error");
       });
   };
 
   return (
     <Box>
+      <Snackbar
+        open={snackbar.show}
+        autoHideDuration={4000}
+        onClose={() => setSnackbarMessage(false, "")}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          onClose={() => setSnackbarMessage(false, "")}
+          severity={snackbar.type === "success" ? "success" : "error"}
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
       {user && (
         <Box
           display="flex"

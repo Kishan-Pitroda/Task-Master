@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Paper, Snackbar, TextField } from "@mui/material";
+import { Box, Button, Paper, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +10,7 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isError, setIsError] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const { setUser } = useStore();
+  const { setUser, setSnackbarMessage } = useStore();
 
   const handleLogin = () => {
     const payload = {
@@ -23,20 +21,13 @@ const Login: React.FC = () => {
     axios
       .post("/api/v1/users/login", payload)
       .then((response) => {
-        setIsSuccess(true);
-        setTimeout(() => {
-          setUser(response.data?.data?.user);
-          navigate("/task-list");
-        }, 6000);
+        setSnackbarMessage(true, "User logged in successfully!", "success");
+        setUser(response.data?.data?.user);
+        navigate("/task-list");
       })
       .catch(() => {
-        setIsError(true);
+        setSnackbarMessage(true, "Login failed!", "error");
       });
-  };
-
-  const closeSnackbar = () => {
-    setIsError(false);
-    setIsSuccess(false);
   };
 
   return (
@@ -47,21 +38,6 @@ const Login: React.FC = () => {
       m={"auto"}
       height={"100vh"}
     >
-      <Snackbar
-        open={isSuccess || isError}
-        autoHideDuration={6000}
-        onClose={closeSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      >
-        <Alert
-          onClose={closeSnackbar}
-          severity={isSuccess ? "success" : "error"}
-          variant="filled"
-          sx={{ width: "100%" }}
-        >
-          {isSuccess ? "User logged in successfully!" : "Error while login"}
-        </Alert>
-      </Snackbar>
       <Paper>
         <Box
           bgcolor={"rgb(251, 251, 251)"}

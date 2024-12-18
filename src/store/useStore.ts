@@ -18,6 +18,12 @@ export interface IUser {
   fullName: string;
 }
 
+export interface ISnackbar {
+  show: boolean;
+  type: "success" | "error";
+  message: string;
+}
+
 interface CounterState {
   counter: number;
   increment: () => void;
@@ -30,6 +36,12 @@ interface CounterState {
   updateTask: (task: ITask) => void;
   user: IUser | null;
   setUser: (user: IUser | null) => void;
+  snackbar: ISnackbar;
+  setSnackbarMessage: (
+    isShow: boolean,
+    message: string,
+    type?: "error" | "success"
+  ) => void;
 }
 
 // Create the Zustand store with persistence
@@ -51,8 +63,7 @@ const useStore = create<CounterState>()(
             }));
             set(() => ({ tasks: taskList }));
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
             set(() => ({ tasks: [] }));
           });
       },
@@ -69,12 +80,23 @@ const useStore = create<CounterState>()(
                 taskList.push(newTask);
                 return {
                   tasks: taskList,
+                  snackbar: {
+                    show: true,
+                    type: "success",
+                    message: "New task created successfully!",
+                  },
                 };
               });
             }
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
+            set(() => ({
+              snackbar: {
+                show: true,
+                type: "error",
+                message: "Error while creating new task!",
+              },
+            }));
           });
       },
       deleteTask: (taskId: number) => {
@@ -85,11 +107,22 @@ const useStore = create<CounterState>()(
               const taskId: number = response.data.data.id || -1;
               set((state) => ({
                 tasks: state.tasks.filter((item) => item.id !== taskId),
+                snackbar: {
+                  show: true,
+                  type: "success",
+                  message: `Task with User Id ${taskId} deleted successfully!`,
+                },
               }));
             }
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
+            set(() => ({
+              snackbar: {
+                show: true,
+                type: "error",
+                message: `Error while deleting the task with user id ${taskId}!`,
+              },
+            }));
           });
       },
       updateTask: (task: ITask) => {
@@ -110,16 +143,45 @@ const useStore = create<CounterState>()(
                 }
                 return {
                   tasks: taskList,
+                  snackbar: {
+                    show: true,
+                    type: "success",
+                    message: `Task with User Id ${newTask.id} updated successfully!`,
+                  },
                 };
               });
             }
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
+            set(() => ({
+              snackbar: {
+                show: true,
+                type: "error",
+                message: `Error while updating the task with user id ${task.id}!`,
+              },
+            }));
           });
       },
       user: null,
-      setUser: (user: IUser | null) => set(() => ({ user: user }))
+      setUser: (user: IUser | null) => set(() => ({ user: user })),
+      snackbar: {
+        show: false,
+        type: "success",
+        message: "",
+      },
+      setSnackbarMessage: (
+        isShow: boolean,
+        message: string,
+        type?: "error" | "success"
+      ) => {
+        set((state) => ({
+          snackbar: {
+            show: isShow,
+            message: message,
+            type: type || state.snackbar.type,
+          },
+        }));
+      },
     }),
     {
       name: "use-store", // Key in localStorage

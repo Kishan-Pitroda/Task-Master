@@ -40,7 +40,7 @@ const LandingPage: React.FC = () => {
           onClick={handleLogin}
           sx={{ mt: 3 }}
         >
-          Login
+          Sign In
         </Button>
       </Box>
     </Container>
