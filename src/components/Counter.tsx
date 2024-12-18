@@ -5,16 +5,17 @@ import useStore from "../store/useStore";
 const Counter: React.FC = () => {
   const { counter, increment, decrement, reset } = useStore();
   return (
-    <Box id="container"
-    padding={"16px 0px"}
-    height={"calc(100vh - 107px)"}
-    sx={{ overflowY: "auto" }}>
+    <Box
+      id="container"
+      padding={"16px 0px"}
+      height={"calc(100vh - 110px)"}
+      sx={{ overflowY: "auto" }}
+    >
       <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
         <Box
           borderRadius={"8px"}
           margin={"16px"}
           bgcolor={"#EEF6EE"}
-          fontFamily={"Roboto"}
           fontWeight={500}
           color={"##043C61"}
           padding={"20px"}

@@ -48,7 +48,6 @@ const Login: React.FC = () => {
           <Box
             color={"#ed6c02"}
             fontWeight={600}
-            fontFamily={"Roboto"}
             fontSize={"24px"}
             display={"flex"}
             alignItems={"center"}
@@ -60,7 +59,6 @@ const Login: React.FC = () => {
           <Box
             color={"#ed6c02"}
             fontWeight={600}
-            fontFamily={"Roboto"}
             fontSize={"24px"}
             display={"flex"}
             alignItems={"center"}
@@ -86,7 +84,6 @@ const Login: React.FC = () => {
             </Box>
             <Box
               color={"#ed6c02"}
-              fontFamily={"Roboto"}
               display={"flex"}
               alignItems={"center"}
               justifyContent={"center"}

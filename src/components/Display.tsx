@@ -8,7 +8,7 @@ const Display: React.FC = () => {
     <Box
       id="container"
       padding={"16px 0px"}
-      height={"calc(100vh - 107px)"}
+      height={"calc(100vh - 110px)"}
       sx={{ overflowY: "auto" }}
     >
       <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
@@ -16,7 +16,6 @@ const Display: React.FC = () => {
           borderRadius={"8px"}
           margin={"16px"}
           bgcolor={"#EEF6EE"}
-          fontFamily={"Roboto"}
           fontWeight={500}
           color={"##043C61"}
           padding={"20px"}

@@ -19,14 +19,7 @@ import useStore, { ITask } from "../store/useStore";
 import moment from "moment";
 
 export default function TaskList() {
-
-  const {
-    tasks,
-    getTaskList,
-    deleteTask,
-    updateTask,
-    createTask,
-  } = useStore();
+  const { tasks, getTaskList, deleteTask, updateTask, createTask } = useStore();
   const [taskList, setTaskList] = useState<ITask[]>(tasks);
   useEffect(() => {
     getTaskList();
@@ -165,7 +158,7 @@ export default function TaskList() {
     <Box
       id="container"
       padding={"16px 0px"}
-      height={"calc(100vh - 107px)"}
+      height={"calc(100vh - 110px)"}
       sx={{ overflowY: "auto" }}
     >
       <Container sx={{ display: "flex", gap: "8px", flexDirection: "column" }}>
@@ -179,7 +172,7 @@ export default function TaskList() {
             <AddIcon fontSize="small" /> Add Task
           </Button>
         </Box>
-        <Grid2 container spacing={2} fontFamily={"Roboto"}>
+        <Grid2 container spacing={2}>
           {["To Do", "In Progress", "Completed"].map((status) => (
             <Grid2
               size={{ xs: 12, sm: 4, md: 4 }}
@@ -223,7 +216,6 @@ export default function TaskList() {
                       alignItems={"center"}
                       justifyContent={"space-between"}
                       gap={"8px"}
-                      fontFamily={"Roboto"}
                       fontSize={"14px"}
                     >
                       <Box

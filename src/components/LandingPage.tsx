@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Typography, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LogoDevIcon from "@mui/icons-material/LogoDev";
 
@@ -20,20 +20,25 @@ const LandingPage: React.FC = () => {
         height="100vh"
         textAlign="center"
       >
-        <LogoDevIcon color="warning" fontSize="large" sx={{ mb: 2 }} />
-        <Typography variant="h3" gutterBottom color="#ed6c02">
+        <LogoDevIcon color="warning" fontSize="large" />
+        <Box
+          color="#ed6c02"
+          fontWeight={600}
+          fontSize="2.5rem"
+          marginBottom="16px"
+        >
           Welcome to TaskMaster
-        </Typography>
-        <Typography variant="h6">
+        </Box>
+        <Box color="#FFF" fontWeight={400} fontSize="18px" lineHeight="1.5">
           TaskMaster is a simple and efficient task list application designed to
           help you manage your tasks with ease. Built with React for the front
           end, Express for the backend, and MongoDB for data storage, TaskMaster
           ensures a seamless experience for organizing your daily activities.
-        </Typography>
-        <Typography variant="body1">
+        </Box>
+        <Box color="#FFF" paddingTop="16px" fontSize="14px" lineHeight="1.5">
           Create, edit, and keep track of your tasks effortlessly. Sign in now
           to get started and boost your productivity!
-        </Typography>
+        </Box>
         <Button
           variant="contained"
           color="warning"

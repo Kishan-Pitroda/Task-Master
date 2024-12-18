@@ -2,7 +2,10 @@ body {
   margin: 0 !important;
   box-sizing: border-box;
   padding: 0;
-  background-color: azure;
+  background: #141e30;
+  background: -webkit-linear-gradient(to right, #243b55, #141e30);
+  background: linear-gradient(to right, #243b55, #141e30);
+  font-family: "Poppins", sans-serif !important;
 }
 
 /* Default link style */
@@ -10,7 +13,6 @@ body {
   text-decoration: none;
   color: #ed6c02;
   font-weight: 500;
-  font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   transition: color 0.3s, transform 0.2s;
@@ -30,14 +32,14 @@ body {
 
 /* The scrollbar track (the background) */
 ::-webkit-scrollbar {
-  width: 10px;               /* Width of the vertical scrollbar */
-  height: 10px;              /* Height of the horizontal scrollbar */
+  width: 10px; /* Width of the vertical scrollbar */
+  height: 10px; /* Height of the horizontal scrollbar */
 }
 
 /* The scrollbar handle (the draggable part) */
 ::-webkit-scrollbar-thumb {
   background-color: #fcbf65; /* Color of the scrollbar handle */
-  border-radius: 5px;        /* Rounded corners */
+  border-radius: 5px; /* Rounded corners */
 }
 
 /* On hover, change the scrollbar handle color */
