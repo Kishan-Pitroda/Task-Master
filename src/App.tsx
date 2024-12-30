@@ -57,7 +57,7 @@ const App: React.FC = () => {
           justifyContent="space-between"
           bgcolor={"rgb(251, 251, 251)"}
           position={"sticky"}
-          boxShadow={"2px 2px 2px 2px rgba(29, 26, 26, 0.1)"}
+          boxShadow={"1px 1px 1px 1px rgba(248, 242, 242, 0.2)"}
           top={"0px"}
           zIndex={1000}
           paddingRight={"16px"}

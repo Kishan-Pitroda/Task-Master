@@ -38,11 +38,11 @@ const Login: React.FC = () => {
       m={"auto"}
       height={"100vh"}
     >
-      <Paper>
+      <Paper sx={{ borderRadius: "16px" }}>
         <Box
           bgcolor={"rgb(251, 251, 251)"}
           width={560}
-          borderRadius={"8px"}
+          borderRadius={"16px"}
           padding={"16px 24px"}
         >
           <Box
